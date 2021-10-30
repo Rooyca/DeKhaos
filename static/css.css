@@ -1,9 +1,9 @@
-body{
-	background-image: url('bg.jpg');
-	background-size: cover;
-	height: 500px; /* You must set a specified height */
-	background-repeat: repeat, no-repeat;
-  	background-position: center; /* Center the image */
+body { 
+  background: url(bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #s-div{
