@@ -13,15 +13,21 @@
 	{% if data %}
 
 	<div id="s-div" class="shadow p-3 mb-5 bg-body rounded" class="card text-center">
-	  <div class="card-header" style="font-size: 25px;">What could it be? Not a meta-deck!</div>
+	  <div class="card-header" style="font-size: 25px;">
+	  	<form action="{{url_for('home')}}" method="get">
+			{{data["quote"]}} <button style="border: none;"><img style="width: 30px;" src="static/dice.png"></button>
+		</form>
+	  </div>
+
 	  <div class="card-body">
 	  	<img src="{{data['url_1']}}" style="width: 30px;">
 		<img src="{{data['url_2']}}" style="width: 30px;">
-	    <h5 class="card-title">Deck code</h5>
-	    <p class="card-text">{{data["deck_code"]}}</p>
-	    <form action="{{url_for('home')}}" method="get">
-			<button class="btn btn-outline-success">Get new one</button>
-		</form>
+	    <details>
+	    	<summary class="card-title">Click here to show the deck</summary>
+	    	<div id="deck" style="font-size: 9px" class="card-text">{{data["deck_code"]}}</div><br>
+	    	<button onclick="CopyDeck('deck')" id="cc" class="btn btn-primary">Copy deck</button>
+	    </details>    
+
 	  </div>
 	  <div class="card-footer text-muted" style="font-size: 10px;"><a href="https://github.com/rooyca">rooyca&copy</a></div>
 	</div>
@@ -31,6 +37,27 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 	</script>
 
+	<script>
+		function CopyDeck(containerid) {
+		  if (document.selection) {
+		    var range = document.body.createTextRange();
+		    range.moveToElementText(document.getElementById(containerid));
+		    range.select().createTextRange();
+		    document.execCommand("copy");
+		    document.getElementById("cc").style.background="green"; 
+		    window.getSelection().removeAllRanges();
+		  } else if (window.getSelection) {
+		    var range = document.createRange();
+		    range.selectNode(document.getElementById(containerid));
+		    window.getSelection().addRange(range);
+		    document.execCommand("copy");
+		    document.getElementById("cc").style.background="green"; 
+		    window.getSelection().removeAllRanges();
+		  }
+		}
+   </script>
+
 
 </body>
 </html>
+

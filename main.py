@@ -17,11 +17,13 @@ regions = { "BC":"https://cdnruneterra.ar/assets/img/region/BandleCity.png",
 @app.route('/', methods=['GET'])
 def home():
 	api_re = requests.get('https://api.rooyca.xyz/v1/random/lordeck').json()
+	quote = requests.get('https://api.rooyca.xyz/v1/random/lor-quotes').json()
 	deck_regions = api_re["description"]["regions"]
 	data = {"regions":deck_regions,
 			"url_1":regions[deck_regions.split('/')[0]],
 			"url_2":regions[deck_regions.split('/')[1]],
-			"deck_code":api_re["description"]["deckCode"]
+			"deck_code":api_re["description"]["deckCode"],
+			"quote":quote
 	}
 	return render_template('home.html', data=data)
 
