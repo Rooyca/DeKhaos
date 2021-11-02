@@ -16,6 +16,7 @@ regions = { "BC":"https://cdnruneterra.ar/assets/img/region/BandleCity.png",
 
 @app.route('/', methods=['GET'])
 def home():
+
 	api_re = requests.get('https://api.rooyca.xyz/v1/random/lordeck').json()
 	deck_regions = api_re["description"]["regions"]
 	deck_code = api_re["description"]["deckCode"]
@@ -26,7 +27,7 @@ def home():
 
 	for i in getting_img_cards['cards']:
 		img_cards.append(i['assets'][0]['gameAbsolutePath'])
-
+	
 	data = {"regions":deck_regions,
 			"url_1":regions[deck_regions.split('/')[0]],
 			"url_2":regions[deck_regions.split('/')[1]],
@@ -36,4 +37,4 @@ def home():
 	return render_template('home.html', data=data)
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(host='0.0.0.0')

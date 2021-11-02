@@ -3,14 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width" >
 	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css.css')}}">
 	<title>Random Deck</title>
 </head>
 <body>
 
-	<div style="position: absolute; left:16%; top: 10%; transform: translate(-50%);">
+	<div style="position: absolute; left:16%; top: 10%; transform: translate(-16%,-10%);">
 		<div class="popup" onclick="myFunction()"><button onclick="CopyDeck('deck')" id="cc" class="btnes">Copy</button>
 	  <span class="popuptext" id="myPopup">Copied!</span>
 	</div>		
@@ -18,13 +17,13 @@
 		<button onclick="location.replace('https://github.com/Rooyca')" class="btnes">Info</button> 
 	</div>
 
-	<div style="position: absolute; left: 50%; top: 21%; transform: translate(-50%);">
+	<div class="div-code">
 		<div class="deck-div-all">
 			<div class="deck-div-info">
 				<div>Code
 				</div>
 			</div>
-			<div id="deck" style="padding: 25px 0; text-align: center;">
+			<div id="deck">
 				<img src="{{data['url_1']}}" style="width: 30px;">
 				<img src="{{data['url_2']}}" style="width: 30px;">
 				<br>
@@ -33,8 +32,8 @@
 		</div>
 	</div>
 
-	<div style="position: absolute; left: 50%; bottom: 15%; transform: translate(-50%, 5%);">
-		<div class="deck-div-all">
+	<div class="div-cards">
+		<div class="deck-div-all-cards">
 			<div class="deck-div-info">
 				<div>Cards 
 				</div>
